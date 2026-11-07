@@ -2,9 +2,36 @@
 
 GPU 第 1 版：中央三维高斯场景、左侧人车流量、右侧人员识别。使用 Django 和原生 JavaScript，Web 与 GPU 服务分别运行。无需数据库、Node.js 或云推理服务。
 
+<details>
+<summary>查看完整看板</summary>
+
 ![智慧校园 GPU 第 1 版](docs/performance/ui/dashboard-blue.png)
 
+</details>
+
 已在 Windows 11 / RTX 3050 Laptop 4 GB 验证全量 Houseplant（113648 个高斯，640×480）、YOLOv8n + ByteTrack 与 YuNet/SFace 的 CUDA 执行。性能实测和范围见 [性能报告](docs/GPU_PERFORMANCE.md) 与 [验收记录](VALIDATION.md)。
+
+## 功能演示
+
+三段 GIF 均录自本机运行的网页，使用仓库自带的公开场景、视频和照片。[素材来源与许可](docs/ASSETS.md)
+
+### 3DGS 视角交互
+
+点击「开始三维场景」加载 Houseplant。左键拖动旋转，右键、中键或 Shift＋左键拖动平移，滚轮或「＋／－」缩放。聚焦窗口后也可用方向键平移，按住 Shift 加速。动图依次展示旋转、放大、平移和重置视角。
+
+![3DGS 实际操作录屏，展示 Houseplant 的旋转、放大、平移和重置](docs/demo/gs-interaction.gif)
+
+### 人车流量监测
+
+选择「服务器示例视频」并开始检测，画面显示检测框、跟踪 ID 和轨迹，下面同步更新当前数量、累计数量和每分钟新增。框选 ROI 会开启新一轮统计，动图也演示了暂停和继续。
+
+![交通监测实际操作录屏，展示示例视频跟踪、ROI 框选和暂停恢复](docs/demo/traffic-monitoring.gif)
+
+### 人脸识别
+
+首次使用时，在「人员管理」录入公开示例 Obama 2009，再打开「识别一次」。动图先用同一人的 Obama 2012 照片匹配通过，再用未登记的 Biden 2021 照片得到未知人员结果。弹窗展示照片、相似度和阈值，识别结果写入历史。
+
+![人脸识别实际操作录屏，展示公开照片匹配通过和未知人员结果](docs/demo/face-recognition.gif)
 
 ## 从零上手：Windows 本机运行全部功能
 
@@ -17,7 +44,7 @@ git clone --recurse-submodules https://github.com/Dwyanelittle64c/smart_campus_d
 cd smart_campus_demo_gpu
 ```
 
-私有仓库需先获得访问权限。使用 Git 克隆，下载 ZIP 不包含 gsplat 和 GLM 子模块。若已普通克隆，在项目根目录补执行 `git submodule update --init --recursive`。项目自带可用的公开场景、权重、示例视频和测试照片，不需要旧 CPU 项目。素材许可与来源见 [ASSETS](docs/ASSETS.md)。
+上面的命令会一并克隆 gsplat 和 GLM 子模块。若已普通克隆，在项目根目录补执行 `git submodule update --init --recursive`。项目自带公开场景、权重、示例视频和测试照片。[素材来源与许可](docs/ASSETS.md)
 
 ### 2. 创建 Web 环境（Windows x64）
 
@@ -85,13 +112,11 @@ python scripts/run.py web --config config/student-remote.json
 
 服务器端部署、组实例配置和端口转发见 [学生交接](docs/STUDENT_HANDOVER.md)。A100/Linux 服务器方案尚未实机验收。
 
-## 一次完整演示
+## 摄像头与性能验收
 
-1. 三维点击“开始三维场景”，左键拖动旋转，右键/中键或Shift＋左键拖动平移；点选三维窗口后也可用方向键平移（Shift加速）。滚轮/＋－缩放，重置同时清除旋转、缩放和平移；停止后释放GS场景。默认实际使用全部113648高斯，640×480，SH0来自素材本身。网页只接收JPEG，静止不重复渲染，网页FPS会回零。
-2. 交通保留“服务器示例视频”，点击开始；框、ID、有限轨迹和同帧统计同时显示。拖动矩形ROI会开启新统计轮次；暂停/继续、停止、重置语义分开。10FPS的vtest视频按原媒体时间播放，检测处理能力不等于播放FPS。
-3. 新克隆的人员库和历史为空。先在“人员管理”点击“录入公开示例 · Obama 2009”，再打开“识别一次”：Obama 2012 是同一人的另一张照片，Biden 2021 是未登记者。照片来源与许可见 [ASSETS](docs/ASSETS.md)。
-4. 浏览器摄像头必须主动授权，来自打开网页的电脑；与人脸预览共享受控MediaStream，最后一个消费者关闭才释放tracks。照片/视频不需要摄像头权限。RTSP连接发生在GPU服务器，不接受学生本机任意文件路径。
-5. 需要复验时展开GS“执行设备与性能验收”，运行GS单独/交通并行/三模块并行/10分钟稳定性。三模块模式会用公开照片做若干次真实识别，产生明确标记的公开示例记录。保持图像与页面可见，不在别人的统计演示中运行测试。
+浏览器摄像头由打开网页的电脑提供，启用时需要授权。交通和人脸共用采集流，关闭最后一个预览后释放摄像头。RTSP 由 GPU 服务端连接。
+
+展开 GS 的「执行设备与性能验收」可复测 GS 单独运行、交通并行、三模块并行和 10 分钟稳定性。三模块模式使用公开照片识别，产生标记为公开示例的记录。GS 静止时网页帧率会回零，交通示例视频按原始 10 FPS 媒体时间播放。[验收记录](VALIDATION.md)
 
 ## 配置和数据
 
@@ -125,4 +150,4 @@ scene.package指向data_root下包含scene.ply/camera.json/source.json/许可的
 
 [ARCHITECTURE](docs/ARCHITECTURE.md) 解释协议、背压、会话与调度；[DEVELOPMENT](docs/DEVELOPMENT.md) 解释模块、开关、新增功能和测试。正常运行不自动下载或重新编译扩展。缺模型只影响对应模块；GPU不可用会明确失败，不偷偷转CPU。
 
-Git 中只保存代码、依赖锁、公开演示素材、报告和代表性截图。上传文件、人员库、历史、本机配置、编译日志和逐帧原始记录不会提交；需要原始记录时按 [VALIDATION](VALIDATION.md) 在自己的机器生成。
+Git 中保存代码、依赖锁、公开演示素材、报告、截图和 GIF。上传文件、人员库、识别历史、本机配置及原始日志存放在本地。[复现说明](VALIDATION.md)
