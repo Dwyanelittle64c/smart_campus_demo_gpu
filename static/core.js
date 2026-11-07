@@ -19,7 +19,10 @@ window.Campus = (() => {
   };
   C.sample=async name=>{const r=await fetch('/api/face/sample/'+name);if(!r.ok)throw new Error('公开测试照片不可用');return r.blob();};
   C.ws = (path) => new WebSocket(`${location.protocol==='https:'?'wss':'ws'}://${location.host}/ws/${path}`);
-  C.onControl = fn=>{C.listeners.push(fn);if(C.sid)fn(true);};
+  C.onControl = fn=>{
+    C.listeners.push(fn);
+    if(C.sid && C.capabilities)fn(true);
+  };
   C.connect = () => {
     if(C.socket && C.socket.readyState<2)return;
     C.text('#connection-state','正在连接 GPU 后端…');
