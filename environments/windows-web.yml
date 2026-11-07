@@ -1,0 +1,7 @@
+name: smart-campus-gpu-web
+channels:
+  - defaults
+dependencies:
+  - python=3.11.18
+  - pip
+# pip依赖单独按web.txt或实际freeze安装，不在base执行。

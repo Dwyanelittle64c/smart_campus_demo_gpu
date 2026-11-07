@@ -1,0 +1,7 @@
+name: smart-campus-gpu-runtime
+channels:
+  - defaults
+dependencies:
+  - python=3.11.18
+  - pip
+# CUDA torch和gsplat编译按GPU_SETUP显式安装；本文件不代表Linux锁定。

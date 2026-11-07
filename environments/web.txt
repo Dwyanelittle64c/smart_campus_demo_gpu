@@ -1,0 +1,4 @@
+Django==5.2.19
+uvicorn==0.34.2
+websockets==14.2
+httpx==0.28.1

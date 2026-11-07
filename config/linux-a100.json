@@ -1,0 +1,11 @@
+{
+  "backend_url": "http://127.0.0.1:18011",
+  "allowed_origins": ["http://127.0.0.1:8010", "http://localhost:8010"],
+  "data_root": "data/instances/group01",
+  "modules": {"scene": true, "traffic": true, "face": true},
+  "device": "cuda:0",
+  "instance_name": "A100 group01 · 配置示例，尚未实机验证",
+  "scene": {"package": "scenes/plant", "width": 640, "height": 480, "jpeg_quality": 88, "sh_mode": "auto", "max_gaussians": null},
+  "traffic": {"model": "models/yolov8n.pt", "imgsz": 416, "confidence": 0.3, "trail_length": 24},
+  "face": {"detector": "models/face_detection_yunet_2023mar.onnx", "recognizer": "models/face_recognition_sface_2021dec.onnx", "threshold": 0.363, "detection_score": 0.8}
+}

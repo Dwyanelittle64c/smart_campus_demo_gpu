@@ -1,0 +1,10 @@
+# 可选训练直接依赖；未安装/未实机训练。先按docs安装CUDA torch，再安装固定训练子模块。
+numpy==1.26.4
+Pillow==11.1.0
+plyfile==1.1
+opencv-python==4.10.0.84
+scipy==1.15.2
+tqdm==4.67.1
+tensorboard==2.19.0
+setuptools==75.1.0
+ninja==1.11.1.3

@@ -1,0 +1,6 @@
+# 默认以 LF 保存源码；下面的素材必须保持原字节，才能通过 SHA256 校验。
+* text=auto eol=lf
+/data/scenes/plant/** -text
+/data/videos/** -text
+/data/test_faces/** -text
+/models/** -text

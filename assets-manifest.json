@@ -1,0 +1,80 @@
+[
+  {
+    "path": "data/scenes/plant/plant.splat",
+    "bytes": 3636736,
+    "sha256": "ce9d490b18f16d6730d832227bf541431b8b1a5d167c5a3fe89af4f324c0d8fd",
+    "origin": "许可公开素材，见 docs/ASSETS.md"
+  },
+  {
+    "path": "data/scenes/plant/scene.ply",
+    "bytes": 7728480,
+    "sha256": "a3b5d0466105baecceb2119760eee0a646aee378981f1ff24c804b860d490588",
+    "origin": "许可公开素材，见 docs/ASSETS.md"
+  },
+  {
+    "path": "data/scenes/plant/camera.json",
+    "bytes": 345,
+    "sha256": "85b2762368a93a412cfbe298a98baa67d58e66c0bc72231600c3427e6928fa27",
+    "origin": "许可公开素材，见 docs/ASSETS.md"
+  },
+  {
+    "path": "data/scenes/plant/meta.json",
+    "bytes": 950,
+    "sha256": "77e5144db50e8822b530c113fea97025f69f3d834a92bc6680fbbd6acf3c3de1",
+    "origin": "许可公开素材，见 docs/ASSETS.md"
+  },
+  {
+    "path": "data/scenes/plant/source.json",
+    "bytes": 627,
+    "sha256": "5251cae12b06e3adbeff8395279656c90be8f4788a7ec7c5b5cb0559a4efa05b",
+    "origin": "许可公开素材，见 docs/ASSETS.md"
+  },
+  {
+    "path": "models/yolov8n.pt",
+    "bytes": 6549796,
+    "sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+    "origin": "许可公开素材，见 docs/ASSETS.md"
+  },
+  {
+    "path": "models/face_detection_yunet_2023mar.onnx",
+    "bytes": 232589,
+    "sha256": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4",
+    "origin": "许可公开素材，见 docs/ASSETS.md"
+  },
+  {
+    "path": "models/face_recognition_sface_2021dec.onnx",
+    "bytes": 38696353,
+    "sha256": "0ba9fbfa01b5270c96627c4ef784da859931e02f04419c829e83484087c34e79",
+    "origin": "许可公开素材，见 docs/ASSETS.md"
+  },
+  {
+    "path": "data/videos/vtest.avi",
+    "bytes": 8131690,
+    "sha256": "45cddc9490be69345cbdab64ca583be65987e864ca408038e648db99e10516cf",
+    "origin": "许可公开素材，见 docs/ASSETS.md"
+  },
+  {
+    "path": "data/test_faces/obama-2009.jpg",
+    "bytes": 803500,
+    "sha256": "19ec613e6831dd0c285b907f4cf1be13a654f8ac237435146320ec3dcc42cd45",
+    "origin": "许可公开素材，见 docs/ASSETS.md"
+  },
+  {
+    "path": "data/test_faces/obama-2012.jpg",
+    "bytes": 939046,
+    "sha256": "ff4a9955e342b14cbd2aaca74b52ffaa1e5c507ba65c3e991ef34e56d0bfc057",
+    "origin": "许可公开素材，见 docs/ASSETS.md"
+  },
+  {
+    "path": "data/test_faces/biden-2021.jpg",
+    "bytes": 4574031,
+    "sha256": "563f24c3a1a7392bb7f96831ba0ee8e7d53755ac9c053e9eeb520530542cc051",
+    "origin": "许可公开素材，见 docs/ASSETS.md"
+  },
+  {
+    "path": "data/scenes/plant/LICENSE.txt",
+    "bytes": 18657,
+    "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+    "origin": "CC BY4.0完整许可；官方来源见third_party/licenses/sources.json"
+  }
+]

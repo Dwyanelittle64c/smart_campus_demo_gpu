@@ -1,0 +1,7 @@
+name: smart-campus-gpu-runtime
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+# A100路径的待验证环境定义，不是伪造的Linux实机freeze。

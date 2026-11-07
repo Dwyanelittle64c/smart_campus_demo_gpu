@@ -1,0 +1,93 @@
+# 原生分段实测
+
+所有档全量113648、SH0；每视角20帧预热后300帧。质量参数保持上游classic、eps2d0.3、radius_clip0。
+
+|尺寸 / 视角|帧/不同RGB|可见最少|非黑覆盖下界|含校验循环吞吐FPS|
+|---|---|---|---|---|
+|640×480 / default|300/300|113449|0.125|69.7|
+|640×480 / rotation|300/300|113449|0.118|69.2|
+|640×480 / zoom|300/300|113046|0.224|69.0|
+|640×480 / near-stress|300/300|80220|0.496|61.3|
+|1280×720 / default|300/300|113219|0.162|29.5|
+|1280×720 / rotation|300/300|113163|0.150|29.5|
+|1280×720 / zoom|300/300|103023|0.235|29.1|
+|1280×720 / near-stress|300/300|51249|0.437|27.9|
+|1920×1080 / default|300/300|113214|0.161|14.2|
+|1920×1080 / rotation|300/300|113146|0.149|14.4|
+|1920×1080 / zoom|300/300|103001|0.234|13.9|
+|1920×1080 / near-stress|300/300|51183|0.436|13.2|
+
+|尺寸 / 视角|阶段|mean ms|P50 ms|P95 ms|
+|---|---|---|---|---|
+|640×480 / default|core_ms|3.786|3.679|4.780|
+|640×480 / default|gpu_convert_ms|0.175|0.163|0.205|
+|640×480 / default|copy_ms|0.247|0.233|0.343|
+|640×480 / default|pixel_convert_ms|0.117|0.106|0.177|
+|640×480 / default|encode_ms|2.599|2.452|3.261|
+|640×480 / default|server_ms|7.988|7.798|9.604|
+|640×480 / rotation|core_ms|3.875|3.828|4.719|
+|640×480 / rotation|gpu_convert_ms|0.175|0.162|0.204|
+|640×480 / rotation|copy_ms|0.249|0.233|0.364|
+|640×480 / rotation|pixel_convert_ms|0.115|0.105|0.183|
+|640×480 / rotation|encode_ms|2.612|2.473|3.397|
+|640×480 / rotation|server_ms|8.108|8.012|9.563|
+|640×480 / zoom|core_ms|3.628|3.557|4.352|
+|640×480 / zoom|gpu_convert_ms|0.186|0.163|0.221|
+|640×480 / zoom|copy_ms|0.242|0.225|0.350|
+|640×480 / zoom|pixel_convert_ms|0.115|0.107|0.165|
+|640×480 / zoom|encode_ms|2.823|2.691|3.568|
+|640×480 / zoom|server_ms|8.041|7.891|9.425|
+|640×480 / near-stress|core_ms|4.252|4.169|5.358|
+|640×480 / near-stress|gpu_convert_ms|0.175|0.164|0.204|
+|640×480 / near-stress|copy_ms|0.282|0.257|0.433|
+|640×480 / near-stress|pixel_convert_ms|0.128|0.112|0.198|
+|640×480 / near-stress|encode_ms|3.627|3.411|5.130|
+|640×480 / near-stress|server_ms|9.619|9.378|12.023|
+|1280×720 / default|core_ms|4.518|4.457|5.358|
+|1280×720 / default|gpu_convert_ms|0.491|0.462|0.540|
+|1280×720 / default|copy_ms|0.566|0.516|0.875|
+|1280×720 / default|pixel_convert_ms|0.479|0.455|0.627|
+|1280×720 / default|encode_ms|7.682|7.352|9.982|
+|1280×720 / default|server_ms|14.878|14.568|17.428|
+|1280×720 / rotation|core_ms|4.558|4.519|5.487|
+|1280×720 / rotation|gpu_convert_ms|0.503|0.462|0.862|
+|1280×720 / rotation|copy_ms|0.566|0.518|0.846|
+|1280×720 / rotation|pixel_convert_ms|0.483|0.452|0.656|
+|1280×720 / rotation|encode_ms|7.604|7.376|9.059|
+|1280×720 / rotation|server_ms|14.868|14.677|16.923|
+|1280×720 / zoom|core_ms|4.986|4.940|5.852|
+|1280×720 / zoom|gpu_convert_ms|0.490|0.462|0.774|
+|1280×720 / zoom|copy_ms|0.569|0.522|0.901|
+|1280×720 / zoom|pixel_convert_ms|0.480|0.449|0.631|
+|1280×720 / zoom|encode_ms|7.901|7.740|9.034|
+|1280×720 / zoom|server_ms|15.581|15.309|17.478|
+|1280×720 / near-stress|core_ms|5.501|5.428|6.386|
+|1280×720 / near-stress|gpu_convert_ms|0.500|0.462|0.834|
+|1280×720 / near-stress|copy_ms|0.558|0.509|0.828|
+|1280×720 / near-stress|pixel_convert_ms|0.473|0.443|0.653|
+|1280×720 / near-stress|encode_ms|9.001|8.851|10.165|
+|1280×720 / near-stress|server_ms|17.168|16.994|19.067|
+|1920×1080 / default|core_ms|6.251|6.119|7.388|
+|1920×1080 / default|gpu_convert_ms|1.087|1.020|1.476|
+|1920×1080 / default|copy_ms|1.140|1.054|1.795|
+|1920×1080 / default|pixel_convert_ms|0.951|0.885|1.281|
+|1920×1080 / default|encode_ms|16.784|16.403|19.128|
+|1920×1080 / default|server_ms|27.410|26.968|31.103|
+|1920×1080 / rotation|core_ms|6.126|6.005|7.168|
+|1920×1080 / rotation|gpu_convert_ms|1.114|1.020|1.547|
+|1920×1080 / rotation|copy_ms|1.080|0.983|1.619|
+|1920×1080 / rotation|pixel_convert_ms|0.934|0.874|1.253|
+|1920×1080 / rotation|encode_ms|16.542|16.115|19.455|
+|1920×1080 / rotation|server_ms|26.978|26.533|30.496|
+|1920×1080 / zoom|core_ms|7.260|7.114|8.242|
+|1920×1080 / zoom|gpu_convert_ms|1.104|1.020|1.538|
+|1920×1080 / zoom|copy_ms|1.120|0.983|1.763|
+|1920×1080 / zoom|pixel_convert_ms|0.952|0.879|1.382|
+|1920×1080 / zoom|encode_ms|17.563|17.048|20.768|
+|1920×1080 / zoom|server_ms|29.205|28.656|33.044|
+|1920×1080 / near-stress|core_ms|9.189|9.069|10.556|
+|1920×1080 / near-stress|gpu_convert_ms|1.081|1.019|1.467|
+|1920×1080 / near-stress|copy_ms|1.113|0.950|1.777|
+|1920×1080 / near-stress|pixel_convert_ms|0.958|0.899|1.311|
+|1920×1080 / near-stress|encode_ms|19.641|19.197|22.676|
+|1920×1080 / near-stress|server_ms|33.153|32.666|36.719|

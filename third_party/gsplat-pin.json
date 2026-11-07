@@ -1,0 +1,19 @@
+{
+  "repository": "https://github.com/nerfstudio-project/gsplat",
+  "version": "1.5.3",
+  "commit": "937e29912570c372bed6747a5c9bf85fed877bae",
+  "glm_commit": "33b4a621a697a305bc3a7610d290677b96beb181",
+  "algorithm_patches": [],
+  "license": "Apache-2.0",
+  "source_hashes": {
+    "setup.py": "ca6d53249f3812c002bbad3729e1ee66970729d5267b8840bcdab10ab5981f90",
+    "gsplat/rendering.py": "5474f95b655703385a884d936af01df06e70b5e0d300005438b524bf1032193c",
+    "gsplat/cuda/_backend.py": "9fb5f060f5f1e9f17e32892674d10813d7d1d42a810fcf4ca514dcac650c3d77"
+  },
+  "windows_binary": {
+    "platform": "win_amd64",
+    "architecture": "sm_86",
+    "bytes": 15863808,
+    "sha256": "f5744c2738bc253c0a2a84c972e1aef2c51bf185f23a9b607ae744dbad1c9b94"
+  }
+}
